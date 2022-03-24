@@ -1,24 +1,27 @@
 -- Create Two Tables
 CREATE TABLE bumble (
-  UserName varchar PRIMARY KEY,
-  UserImage varchar,
-  ThumpsUpCount INT,
-  CreatedDate INT,
-  Rating INT
+ 	UniqueID varchar PRIMARY KEY,
+ 	UserName varchar,
+	UserImage varchar,
+	Rating INT,
+ 	ThumpsUpCount INT,
+ 	CreatedDate date
 );
 
 CREATE TABLE hinge (
-  UserName varchar PRIMARY KEY,
-  UserImage varchar,
-  ThumpsUpCount INT,
-  CreatedDate INT,
-  Rating INT
+ 	UniqueID varchar PRIMARY KEY,
+ 	UserName varchar,
+	UserImage varchar,
+	Rating INT,
+ 	ThumpsUpCount INT,
+ 	CreatedDate date
 );
 
-CREATE TABLE tinder (
-  UserName varchar PRIMARY KEY,
-  UserImage varchar,
-  ThumpsUpCount INT,
-  CreatedDate INT,
-  Rating INT
+CREATE TABLE okcupid (
+ 	UniqueID varchar PRIMARY KEY,
+ 	UserName varchar,
+	UserImage varchar,
+	Rating INT,
+ 	ThumpsUpCount INT,
+ 	CreatedDate date
 );

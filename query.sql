@@ -3,6 +3,8 @@ SELECT * FROM bumble;
 
 SELECT * FROM hinge;
 
+SELECT * FROM okcupid;
+
 -- Join tables on county_id
 SELECT bumble.UniqueID, hinge.UniqueID,
 FROM bumble
