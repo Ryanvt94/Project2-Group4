@@ -1,0 +1,57 @@
+-- Create Two Tables
+drop table bumble;
+drop table hinge;
+drop table okcupid;
+
+CREATE TABLE bumble (
+ 	UniqueID varchar PRIMARY KEY,
+ 	UserName varchar,
+	UserImage varchar,
+	Rating INT,
+ 	ThumpsUpCount INT,
+ 	CreatedDate date
+);
+
+CREATE TABLE hinge (
+ 	UniqueID varchar PRIMARY KEY,
+ 	UserName varchar,
+	UserImage varchar,
+	Rating INT,
+ 	ThumpsUpCount INT,
+ 	CreatedDate date
+);
+
+CREATE TABLE okcupid (
+ 	UniqueID varchar PRIMARY KEY,
+ 	UserName varchar,
+	UserImage varchar,
+	Rating INT,
+ 	ThumpsUpCount INT,
+ 	CreatedDate date
+);
+
+-- Query to check successful load
+SELECT * FROM bumble;
+
+SELECT * FROM hinge;
+
+SELECT * FROM okcupid;
+
+-- Join tables on UniqueID
+SELECT 'bumble' as app, SUM(bumble_rating) as score
+FROM rating_results
+union
+SELECT 'hinge', SUM(hinge_rating)
+FROM rating_results
+union
+SELECT 'okcupid', SUM(cupid_rating)
+FROM rating_results
+
+
+create table rating_results as
+SELECT bumble.username, bumble.rating as Bumble_Rating, hinge.rating as Hinge_Rating, okcupid.rating as Cupid_Rating
+FROM bumble
+INNER JOIN hinge
+ON bumble.UniqueID = hinge.UniqueID
+INNER JOIN okcupid
+ON bumble.UniqueID = okcupid.UniqueID;
