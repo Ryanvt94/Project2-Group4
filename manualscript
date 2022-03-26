@@ -37,6 +37,15 @@ SELECT * FROM hinge;
 
 SELECT * FROM okcupid;
 
+-- create table of all ratings
+create table rating_results as
+SELECT bumble.username, bumble.rating as Bumble_Rating, hinge.rating as Hinge_Rating, okcupid.rating as Cupid_Rating
+FROM bumble
+INNER JOIN hinge
+ON bumble.UniqueID = hinge.UniqueID
+INNER JOIN okcupid
+ON bumble.UniqueID = okcupid.UniqueID;
+
 -- Join tables on UniqueID
 SELECT 'bumble' as app, SUM(bumble_rating) as score
 FROM rating_results
@@ -47,11 +56,15 @@ union
 SELECT 'okcupid', SUM(cupid_rating)
 FROM rating_results
 
+-- find average rating
+SELECT 'bumble' as app, avg(bumble_rating) as score
+FROM rating_results
+union
+SELECT 'hinge', avg(hinge_rating)
+FROM rating_results
+union
+SELECT 'okcupid', avg(cupid_rating)
+FROM rating_results
 
-create table rating_results as
-SELECT bumble.username, bumble.rating as Bumble_Rating, hinge.rating as Hinge_Rating, okcupid.rating as Cupid_Rating
-FROM bumble
-INNER JOIN hinge
-ON bumble.UniqueID = hinge.UniqueID
-INNER JOIN okcupid
-ON bumble.UniqueID = okcupid.UniqueID;
+select count(*)
+from rating_results
